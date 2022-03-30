@@ -21,13 +21,6 @@ string FileReader::getText() {
   return str;
 }
 
-int FileReader::getFileSize() {
-  // position the pointer to the end
-  _file.seekg(0, ios::end);
-
-  return _file.tellg();
-}
-
 void FileReader::close() {
   _file.close();
 }

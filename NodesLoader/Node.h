@@ -25,13 +25,11 @@ public:
   const std::string &getCode() const;
   void setCode(const std::string &code);
 
-  friend ostream& operator<<(ostream& os, const Node& node);
-
   static void ReplaceAll(string &str, const string &from, const string &to);
-
   static string specialCharToNotation(string ch);
-
   static char notationToSpecialChar(const string& ch);
+
+  friend ostream& operator<<(ostream& os, const Node& node);
 
 private:
   float _frequency;

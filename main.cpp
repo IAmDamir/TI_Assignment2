@@ -16,10 +16,10 @@ int main() {
   cout << encodedText << endl;
   fileReader.close();
 
-//  ShannonFanoDecoder decoder(encodedText);
-//  string decodedText = decoder.decode(characters);
-//
-//  cout << decodedText << endl;
+  ShannonFanoDecoder decoder(encodedText);
+  string decodedText = decoder.decode(characters);
+
+  cout << decodedText << endl;
 
   for (auto& node:characters) {
     delete(node);

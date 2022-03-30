@@ -30,18 +30,19 @@ string ShannonFanoDecoder::decode(const vector<Node*> &characters) {
     string chars;
 
     for (int i = 0; i < characters.size(); ++i) {
+      Node node = *characters[i];
       // isPrefix checks if characters[i] has encodedCharacter as prefix
       //// if you don't want the explanation of how I check it you can skip following comments
       // mismatch returns a pair of iterators to the first non-equal element from each string
       // if no mismatches found then it returns iterator pointing to the end of the string
       // so if mismatch(...).first == firstString.end() then secondString has firstString as prefix
       bool isPrefix = std::mismatch(encodedCharacter.begin(), encodedCharacter.end(),
-                                    characters[i]->getCode().begin(), characters[i]->getCode().end()).first == encodedCharacter.end();
+                                    node.getCode().begin(), node.getCode().end()).first == encodedCharacter.end();
       if (isPrefix) {
         // specialChar will contain character that we decoded
         // if decoded char is special char it will turn it to the notation that we can read
         string specialChar;
-        specialChar.push_back(characters[i]->getCharacter());
+        specialChar.push_back(node.getCharacter());
         chars += Node::specialCharToNotation(specialChar) + " ";
         if (isFirstNodeWithMatchingCode) {
           firstNodeWithMatchingCodeidx = i + 1;
@@ -49,8 +50,8 @@ string ShannonFanoDecoder::decode(const vector<Node*> &characters) {
         isFirstNodeWithMatchingCode = false;
       }
 
-      if (characters[i]->getCode() == encodedCharacter) {
-        decodedText.push_back(characters[i]->getCharacter());
+      if (node.getCode() == encodedCharacter) {
+        decodedText.push_back(node.getCharacter());
         encodedCharacter.clear();
         break;
       }

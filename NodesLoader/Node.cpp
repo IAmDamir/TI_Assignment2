@@ -57,12 +57,16 @@ ostream &operator<<(ostream &os, const Node &node) {
   return os;
 }
 
-void Node::ReplaceAll(string &str, const string &from, const string &to) {
-  size_t start_pos = 0;
-  while((start_pos = str.find(from, start_pos)) != string::npos) {
-    str.replace(start_pos, from.length(), to);
-    start_pos += to.length(); // Handles case where 'to' is a substring of 'from'
-  }
+char Node::notationToSpecialChar(const string &ch)  {
+  if(ch == "sp")
+    return ' ';
+  if(ch == "nl")
+    return '\n';
+  if(ch == "ht")
+    return '\t';
+  if(ch == "vt")
+    return '\v';
+  return ch[0];
 }
 
 string Node::specialCharToNotation(string ch) {
@@ -85,14 +89,10 @@ string Node::specialCharToNotation(string ch) {
   return ch;
 }
 
-char Node::notationToSpecialChar(const string &ch)  {
-  if(ch == "sp")
-    return ' ';
-  if(ch == "nl")
-    return '\n';
-  if(ch == "ht")
-    return '\t';
-  if(ch == "vt")
-    return '\v';
-  return ch[0];
+void Node::ReplaceAll(string &str, const string &from, const string &to) {
+  size_t start_pos = 0;
+  while((start_pos = str.find(from, start_pos)) != string::npos) {
+    str.replace(start_pos, from.length(), to);
+    start_pos += to.length(); // Handles case where 'to' is a substring of 'from'
+  }
 }

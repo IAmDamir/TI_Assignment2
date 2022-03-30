@@ -17,7 +17,6 @@ public:
   ~FileReader();
 
   string getText();
-  int getFileSize();
   void close();
 private:
   ifstream _file;
